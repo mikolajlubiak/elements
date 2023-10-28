@@ -1,0 +1,28 @@
+type = "pod"
+run-cmd = ["docker-entrypoint.sh", "mysqld"]
+
+[build]
+type = "image"
+image ="mysql:latest"
+
+[variables]
+MYSQL_ROOT_PASSWORD.secret = true
+MYSQL_PASSWORD.secret = true
+MYSQL_DATABASE = "app"
+MYSQL_USER = "aiohttp-sqlalchemy"
+
+[expose.3306]
+type = "tcp"
+
+[storage."/var/lib/mysql"]
+type = "block"
+max-size-mb = 8192
+
+[storage."/tmp"]
+type = "temp"
+max-size-mb = 32
+
+[storage."/var/run/mysqld"]
+type = "temp"
+max-size-mb = 64
+

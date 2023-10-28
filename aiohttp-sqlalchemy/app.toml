@@ -1,0 +1,20 @@
+type = "pod"
+
+run-cmd = ['gunicorn', 'backend.http.sever:prepare_app()', '--worker-class', 'aiohttp.GunicornWebWorker']
+run-writable-file-system = true
+
+[build]
+type = 'script'
+script = """
+FROM python:3.12-bookworm
+WORKDIR /app
+
+RUN python -m pip install -r requirements.txt
+
+COPY app/* .
+
+RUN python -m backend.database.init_db 
+"""
+
+[expose.8080]
+type = 'http'
