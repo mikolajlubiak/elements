@@ -29,3 +29,7 @@ HTTP_PORT=8080
 
 [expose.8080]
 type = 'http'
+
+[storage."/app"]
+type = "block"
+max-size-mb = 8192
