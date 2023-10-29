@@ -13,8 +13,9 @@ RUN python -m pip install -r requirements.txt
 
 COPY app/* .
 
-RUN python -m backend.database.init_db 
+RUN python -m backend.database.init_db
 RUN python -m pytest
+RUN python -m backend.database.init_db # Clean database after tests
 """
 
 [variables]
