@@ -21,7 +21,7 @@ def user_storage(init_database):
     return UserStorage(engine)
 
 
-def test_register_user(user_storage):
+def test_remove_user(user_storage):
     user = {
         "login": "email@example.com",
         "password": "password123"
@@ -33,3 +33,8 @@ def test_register_user(user_storage):
     user_storage.remove_entity(**user)
 
     assert user_storage.entity_exists(**user) is False
+
+def test_register_user(user_storage):
+    with pytest.raises(NoResultFound):
+        user_storage.remove_entity(email="non_existent@example.com")
+        assert user_storage.entity_exists(email="non_existent@example.com") is False
