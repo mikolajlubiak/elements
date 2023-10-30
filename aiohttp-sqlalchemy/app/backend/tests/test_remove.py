@@ -23,9 +23,9 @@ def user_storage(init_database):
 
 def test_remove_user(user_storage):
     user = {
-        "login": "email@example.com",
-        "password": "password123"
-    }
+            "login": "email@example.com",
+            "password": "password123"
+            }
     user_storage.add_entity(**user)
 
     assert user_storage.entity_exists(**user)
@@ -36,5 +36,5 @@ def test_remove_user(user_storage):
 
 def test_remove_non_existent_user(user_storage):
     with pytest.raises(NoResultFound):
-        user_storage.remove_entity(email="non_existent@example.com")
-        assert user_storage.entity_exists(email="non_existent@example.com") is False
+        user_storage.remove_entity(login="non_existent@example.com")
+        assert user_storage.entity_exists(login="non_existent@example.com") is False

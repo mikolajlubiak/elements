@@ -23,19 +23,25 @@ def user_storage(init_database):
 
 def test_update_user(user_storage):
     user = {
-        "login": "email@example.com",
-        "password": "password123"
-    }
+            "login": "email@example.com",
+            "password": "password123"
+            }
     user_storage.add_entity(**user)
 
     assert user_storage.entity_exists(**user)
 
     change_password = {
-        "password": "password1234"
-    }
+            "password": "password1234"
+            }
 
     user_storage.update_entity(change_password)
 
-    entity = user_storage.get_entity_by_attributes(email="email@example.com")
+    entity = user_storage.get_entity_by_attributes(login="email@example.com")
 
     assert entity.password == "password1234"
+
+def test_update_non_existent_user(user_storage):
+    with pytest.raises(NoResultFound):
+        user_storage.update_entity({"login": "non_existent@example.com"})
+        assert user_storage.entity_exists(login="non_existent@example.com") is False
+
