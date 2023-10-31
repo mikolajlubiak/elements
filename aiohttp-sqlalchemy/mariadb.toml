@@ -1,9 +1,9 @@
 type = "pod"
-run-cmd = ["docker-entrypoint.sh", "mysqld"]
+run-cmd = ["docker-entrypoint.sh", "mariadbd"]
 
 [build]
 type = "image"
-image ="mysql:latest"
+image ="mariadb:latest"
 
 [variables]
 MYSQL_ROOT_PASSWORD.secret = true
@@ -17,12 +17,3 @@ type = "tcp"
 [storage."/var/lib/mysql"]
 type = "block"
 max-size-mb = 8192
-
-[storage."/tmp"]
-type = "temp"
-max-size-mb = 32
-
-[storage."/var/run/mysqld"]
-type = "temp"
-max-size-mb = 64
-
