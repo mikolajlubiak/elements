@@ -30,7 +30,7 @@ def test_register_user(user_storage):
 
     assert user_storage.entity_exists(**user)
 
-def test_register_existing_email_user(user_storage):
+def test_register_existing_user(user_storage):
     existing_user = {
             "login": "email@example.com",
             "password": "password123"

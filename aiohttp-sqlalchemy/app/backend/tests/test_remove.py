@@ -32,9 +32,9 @@ def test_remove_user(user_storage):
 
     user_storage.remove_entity(**user)
 
-    assert user_storage.entity_exists(**user) is False
+    assert not user_storage.entity_exists(**user)
 
 def test_remove_non_existent_user(user_storage):
     with pytest.raises(NoResultFound):
         user_storage.remove_entity(login="non_existent@example.com")
-        assert user_storage.entity_exists(login="non_existent@example.com") is False
+        assert not user_storage.entity_exists(login="non_existent@example.com")
