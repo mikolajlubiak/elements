@@ -16,4 +16,4 @@ type = "tcp"
 
 [storage."/var/lib/mysql"]
 type = "block"
-max-size-mb = 8192
+max-size-mb = 20000
